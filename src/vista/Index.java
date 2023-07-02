@@ -87,12 +87,16 @@ public class Index {
             System.out.print("Escoja opción [1-2]: ");
             int opc = leer.entero();
 
-            do {
-                System.out.print("Ingrese una opcion valida: ");
-                opc = leer.entero();
-                campo = (opc == 1) ? "nombre" : "apellido";
+            if (opc != 1 && opc != 2) {
+                
+                do {
+                    System.out.print("Ingrese un valor valido : ");
+                    opc = leer.entero();
+                    campo = (opc == 1) ? "nombre" : "apellido";
 
-            } while (opc != 1 && opc != 2);
+                } while (opc != 1 && opc != 2);
+
+            }
 
             System.out.print("Digite la palabra : ");
             palabra = leer.cadena();
