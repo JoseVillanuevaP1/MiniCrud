@@ -84,19 +84,14 @@ public class Index {
             System.out.println("Buscar por: ");
             System.out.println("1. Nombre");
             System.out.println("2. Apellido");
-            System.out.print("Escoja opción [1-2]: ");
-            int opc = leer.entero();
+            int opc;
 
-            if (opc != 1 && opc != 2) {
-                
-                do {
-                    System.out.print("Ingrese un valor valido : ");
-                    opc = leer.entero();
-                    campo = (opc == 1) ? "nombre" : "apellido";
+            do {
+                System.out.print("Escoja opción [1-2]: ");
+                opc = leer.entero();
+                campo = (opc == 1) ? "nombre" : "apellido";
 
-                } while (opc != 1 && opc != 2);
-
-            }
+            } while (opc != 1 && opc != 2);
 
             System.out.print("Digite la palabra : ");
             palabra = leer.cadena();
@@ -116,9 +111,14 @@ public class Index {
                 // Recorremos el ArrayList de Personas y agregamos los datos a la lista "data"
                 for (Persona persona : personas) {
 
+                    String nombreCompleto = persona.getNombreCompleto();
+                    if (nombreCompleto.length() > 30) { // Límite de caracteres para mostrar
+                        nombreCompleto = nombreCompleto.substring(0, 27) + "...";
+                    }
+
                     String[] rowData = {
                         String.valueOf(persona.getIdpersona()),
-                        persona.getNombreCompleto(),
+                        nombreCompleto,
                         persona.getDni(),
                         String.valueOf(persona.getSalario())
                     };
@@ -140,10 +140,15 @@ public class Index {
                 // Recorremos el ArrayList de Personas y agregamos los datos a la lista "data"
                 for (Persona persona : personas) {
 
+                    String nombreCompleto = persona.getNombreCompleto();
+                    if (nombreCompleto.length() > 30) { // Límite de caracteres para mostrar
+                        nombreCompleto = nombreCompleto.substring(0, 27) + "...";
+                    }
+
                     //validamos el metodo de busqueda
                     String[] rowData = {
                         String.valueOf(persona.getIdpersona()),
-                        persona.getNombreCompleto(),
+                        nombreCompleto,
                         persona.getDni(),
                         String.valueOf(persona.getSalario())
                     };
@@ -164,10 +169,15 @@ public class Index {
                 // Recorremos el ArrayList de Personas y agregamos los datos a la lista "data"
                 for (Persona persona : personas) {
 
+                    String nombreCompleto = persona.getNombreCompleto();
+                    if (nombreCompleto.length() > 30) { // Límite de caracteres para mostrar
+                        nombreCompleto = nombreCompleto.substring(0, 27) + "...";
+                    }
+
                     //validamos el metodo de busqueda
                     String[] rowData = {
                         String.valueOf(persona.getIdpersona()),
-                        persona.getNombreCompleto(),
+                        nombreCompleto,
                         persona.getDni(),
                         String.valueOf(persona.getSalario())
                     };
@@ -251,8 +261,8 @@ public class Index {
         for (Persona persona : personas) {
 
             String nombreCompleto = persona.getNombreCompleto();
-            if (nombreCompleto.length() > 25) { // Límite de caracteres para mostrar
-                nombreCompleto = nombreCompleto.substring(0, 17) + "...";
+            if (nombreCompleto.length() > 30) { // Límite de caracteres para mostrar
+                nombreCompleto = nombreCompleto.substring(0, 27) + "...";
             }
 
             String[] rowData = {
@@ -274,7 +284,7 @@ public class Index {
     public static void printReport(List<String[]> data) {
         int[] columnWidths = calculateColumnWidths(data);
 
-        String[] columnTitles = {"ID", "Nombre", "DNI", "Salario"};
+        String[] columnTitles = {"ID", "Nombre Completo", "DNI", "Salario"};
 
         for (int i = 0; i < columnTitles.length; i++) {
             String formattedTitle = String.format("%-" + (columnWidths[i] + 5) + "s", columnTitles[i]);

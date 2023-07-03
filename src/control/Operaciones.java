@@ -74,8 +74,8 @@ public class Operaciones {
 
         ArrayList<Persona> personas = new ArrayList<>();
         String sql = " SELECT *"
-                + " FROM PERSONA "
-                + " WHERE " + columna + " LIKE '" + palabra + "%' ORDER BY APELLIDO; ";
+                + " FROM PERSONA"
+                + " WHERE " + columna + " LIKE '" + palabra + "%' ORDER BY APELLIDO;";
 
         try {
             con = cn.getConnection();
